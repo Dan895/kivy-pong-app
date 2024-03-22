@@ -3,8 +3,6 @@ from kivy.app import App
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
-from kivy.core.image import Image
-from kivy.graphics.texture import Texture
 
 
 class PongPaddle(Widget):
@@ -74,21 +72,13 @@ class PongGame(Widget):
         if touch.x > self.width - self.width / 3:
             self.player2.center_y = touch.y
 
-    def rotate_image(self, dt):
-        source_image = Image('images/red.jpg').texture
-        rotated_image = Texture.create(
-            size=(source_image.height, source_image.width), colorfmt='rgba')
-        rotated_image.blit_buffer(
-            source_image.pixels, colorfmt='rgba', bufferfmt='ubyte', rotation=90)
-        self.rotated_texture = rotated_image
-
 
 class PongApp(App):
     def build(self):
         game = PongGame()
         game.serve_ball()
         Clock.schedule_interval(game.update, 1.0/60.00)
-        Clock.schedule_once(game.rotate_image)
+        # Clock.schedule_once(game.rotate_image)
         return game
 
 

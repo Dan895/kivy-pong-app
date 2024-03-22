@@ -21,25 +21,12 @@
     player1: player_left
     player2: player_right
 
-    # add the background image
-    canvas.before:
-        PushMatrix
-        Rotate:
-            angle: 45
-            origin: self.center
-        Rectangle: 
-            source: 'images/red.jpg'
-            pos: self.pos
-            size: self.size
-            texture: self.rotated_texture
-        PopMatrix
     canvas:
         # this is the white line 
         # over the net
         Rectangle:
             pos: self.center_x - 5, 0
             size: 10, self.height
-    
     Label:
         font_size: 70
         center_x: root.width / 4
